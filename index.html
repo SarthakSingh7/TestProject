@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<center><h1>Gas solubility using Standing's correlation</h1></center>
+</head>
+<body>
+<center>
+  API_Gravity
+  <input type = 'text' id = 'API gravity' placeholder = 'Enter API gravity'>
+  <br><br>
+  Temperature
+  <input type = 'text' id = 'Temperature' size = '15' placeholder = 'temperature in fahrenheit'>
+  <br><br>
+  System_pressure
+  <input type = 'text' id = 'System pressure' size = '15' placeholder = 'Enter pressure in psia'>
+  <br><br>
+  Solution_gas_specific_gravity 
+  <input type = 'text' id = 'Sol gas spgr' size = '15' placeholder = 'Enter value'>
+  <br><br>
+  <button onclick = 'calculate()'> calculate</button>
+  <h3 calculate gas sol> </h3>
+    <h3 id = 'answer'> </h3>
+</center>    
+<script>
+    function calculate(){
+        var API =document.getElementById('API gravity').value;
+        var Temp = document.getElementById('Temperature').value;
+        var pressure = document.getElementById('System pressure').value;
+        var gas_spgr = document.getElementById('Sol gas spgr').value;
+        var x = 0.0125*parseFloat(API) - 0.00091*(parseFloat(Temp));
+        var gas_solubility = parseFloat(gas_spgr)*((((parseFloat(pressure)/18.2)+1.4)*10**x)**1.2048);
+
+        document.getElementById('answer').innerHTML = 'The Gas Solubility is: ' + gas_solubility;
+    }
+</script>
+</body>
+</html>
