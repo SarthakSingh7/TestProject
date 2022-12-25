@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<center><h1>R<sub>s</sub> Gas solubility using Standing's Correlation</h1></center>
+</head>
+<body>
+<center>
+    The gas solubility is defined as the number of standard cubic feet of 
+    gas that will dissolve in one stock-tank barrel of crude oil at certain pressure and temperature<br><br>
+    The solubility of a natural gas in a crude oil is a strong function of the
+pressure, temperature, API gravity, and gas gravity.<br><br>
+For a particular gas and crude oil to exist at a constant temperature, the solubility increases 
+with pressure until the saturation pressure is reached. <br>
+At the saturation pressure (bubble-point pressure) all the available gases are dissolved
+in the oil and the gas solubility reaches its maximum value.<br><br>
+  API Gravity
+  <input type = 'text' id = 'API gravity' placeholder = 'Enter API gravity'>
+  <br><br>
+  Temperature
+  <input type = 'text' id = 'Temperature' size = '15' placeholder = 'temperature in fahrenheit'>
+  <br><br>
+  System Pressure
+  <input type = 'text' id = 'System pressure' size = '15' placeholder = 'Enter pressure in psia'>
+  <br><br>
+  Solution gas specific gravity 
+  <input type = 'text' id = 'Sol gas spgr' size = '15' placeholder = 'Enter value'>
+  <br><br>
+  <button onclick = 'calculate()'> Calculate</button>
+  <h3 calculate gas sol> </h3>
+    <h3 id = 'answer'> </h3>
+</center>    
+<script>
+    function calculate(){
+        var API =document.getElementById('API gravity').value;
+        var Temp = document.getElementById('Temperature').value;
+        var pressure = document.getElementById('System pressure').value;
+        var gas_spgr = document.getElementById('Sol gas spgr').value;
+        var x = 0.0125*parseFloat(API) - 0.00091*(parseFloat(Temp));
+        var gas_solubility = parseFloat(gas_spgr)*((((parseFloat(pressure)/18.2)+1.4)*10**x)**1.2048);
+
+        document.getElementById('answer').innerHTML = 'Gas Solubility = ' + gas_solubility + ' scf/STB' ;
+    }
+</script>
+</body>
+</html>
